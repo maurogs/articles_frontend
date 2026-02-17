@@ -1,0 +1,23 @@
+<nav class="py-3 mb-4 border-bottom">
+  <div class="container-fluid d-flex justify-content-center">
+    <a
+      routerLink="/articles"
+      routerLinkActive="text-dark"
+      #rlaA="routerLinkActive"
+      [class.text-muted]="!rlaA.isActive"
+      class="h4 text-decoration-none me-4"
+    >
+      Articles
+    </a>
+
+    <a
+      routerLink="/articles"
+      routerLinkActive="text-dark"
+      #rlaO="routerLinkActive"
+      [class.text-muted]="!rlaO.isActive"
+      class="h4 text-decoration-none"
+    >
+      Overview
+    </a>
+  </div>
+</nav>
