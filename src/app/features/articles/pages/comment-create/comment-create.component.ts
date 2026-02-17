@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommentsService } from '@features/articles/services/comments.service';
+import { capitalizeWords } from '@shared/utils/string.utils';
 
 @Component({
   selector: 'app-add-comment',
@@ -34,7 +35,7 @@ export class CommentCreateComponent {
       const { authorName, body } = this.commentForm.value;
 
       this.commentsService
-        .createComment(this.articleId().toString(), authorName, body)
+        .createComment(this.articleId().toString(), capitalizeWords(authorName), body)
         .subscribe(() => {
           this.router.navigate(['/articles', this.articleId(), 'comments']);
         });

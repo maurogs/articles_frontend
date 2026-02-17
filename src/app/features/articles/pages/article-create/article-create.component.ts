@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ArticlesService } from '@features/articles/services/articles.service';
+import { capitalizeWords, capitalizeFirstLetter } from '@shared/utils/string.utils';
 
 @Component({
   selector: 'app-article-create',
@@ -28,9 +29,9 @@ export class ArticleCreateComponent {
 
       this.articlesService
         .createArticle({
-          title: rawValue.title as string,
+          title: capitalizeFirstLetter(rawValue.title as string),
           body: rawValue.body as string,
-          authorName: rawValue.authorName as string,
+          authorName: capitalizeWords(rawValue.authorName as string),
         })
         .subscribe({
           next: () => {
