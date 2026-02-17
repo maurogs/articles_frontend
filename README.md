@@ -1,59 +1,92 @@
-# ArticlesFrontend
+# Angular Frontend – Articles & Comments
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+This project is an Angular-based frontend application that interacts with a Ruby on Rails API to manage articles, comments, and engagement information.
 
-## Development server
+# Requirements
 
-To start a local development server, run:
+- Node.js v20.19.0
+- Angular CLI 21.1.4
 
-```bash
+## Installation
+
+Install the dependencies
+```
+npm install
+```
+
+Run the server
+```
 ng serve
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+or
+```
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The application will be available at http://localhost:4200
 
-```bash
-ng generate --help
+## Features
+
+The application provides the following views:
+
+### Articles List
+
+- Displays all articles
+- Shows title, author, creation date, and number of comments
+- Allows navigation to article-specific comments
+
+### Article Comments List
+
+- Lists all comments associated with a selected article
+- Shows author, body, and creation date
+- Includes a button to add a new comment
+
+### Create Article
+
+- Form to create a new article
+- Fields: title, body, author name
+
+### Create Comment
+
+- Form to add a comment to a specific article
+- Fields: author name, body
+- Automatically links the comment to the selected article
+
+### Overview Dashboard
+
+- Displays basic engagement metrics:
+  - Total number of articles
+  - Total number of comments
+  - Most commented articles
+
+## API Integration
+
+The frontend communicates with the Rails backend using HTTP services.
+Endpoints consumed include:
+
+- GET /api/articles
+- POST /api/articles
+- GET /api/articles/:id/comments
+- GET /api/comments
+- POST /api/comments
+
+## Code Quality Tools
+
+The project uses ESLint and Prettier for code quality and formatting.
+
+Run ESLint:
+```
+npm run lint
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
+Run Prettier:
+```
+npm run format
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Improvements
 
-## Running unit tests
+- Testing components and services
+- Improve styling (plus responsive)
+- Edit and Delete articles and comments
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
