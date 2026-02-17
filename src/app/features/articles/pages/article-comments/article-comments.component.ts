@@ -1,14 +1,15 @@
 import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ArticlesService } from '@features/articles/services/articles.service';
-import { Comment, ApiResponse } from '@features/articles/models/article.model';
+import { ApiResponse } from '@features/articles/models/article.model';
+import { Comment } from '@features/articles/models/comment.model';
 import { PaginationComponent } from '@shared/ui/pagination/pagination.component';
 
 @Component({
   selector: 'app-article-comments',
   standalone: true,
-  imports: [CommonModule, PaginationComponent],
+  imports: [CommonModule, RouterLink, PaginationComponent],
   templateUrl: './article-comments.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

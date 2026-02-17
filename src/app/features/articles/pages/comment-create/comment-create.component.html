@@ -1,0 +1,63 @@
+<div class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-lg-5">
+      <div class="card shadow-sm border-0 bg-light">
+        <div class="card-body p-4">
+          <h2 class="h4 fw-bold mb-4">Create Comment</h2>
+
+          <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label fw-semibold">Full Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="authorName"
+                placeholder="Example: John Doe"
+                [class.is-invalid]="
+                  commentForm.get('authorName')?.invalid && commentForm.get('authorName')?.touched
+                "
+              />
+
+              @if (
+                commentForm.get('authorName')?.invalid && commentForm.get('authorName')?.touched
+              ) {
+                <div class="invalid-feedback">El nombre es obligatorio (mín. 3 letras)</div>
+              }
+            </div>
+
+            <div class="mb-4">
+              <label for="comment" class="form-label fw-semibold">Comment</label>
+              <textarea
+                class="form-control"
+                formControlName="body"
+                rows="4"
+                placeholder="Write your comment here"
+                [class.is-invalid]="
+                  commentForm.get('body')?.invalid && commentForm.get('body')?.touched
+                "
+              ></textarea>
+
+              @if (commentForm.get('body')?.invalid && commentForm.get('body')?.touched) {
+                <div class="invalid-feedback">El comentario debe ser más largo</div>
+              }
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <button
+                type="submit"
+                class="btn btn-outline-dark px-4"
+                [disabled]="commentForm.invalid"
+              >
+                Submit Comment
+              </button>
+
+              <button type="button" class="btn btn-outline-secondary" [routerLink]="['/articles']">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
