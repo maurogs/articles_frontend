@@ -2,8 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { Article, ApiResponse } from '@features/articles/models/article.model';
-import { Comment } from '@features/articles/models/comment.model';
+import { ApiResponse, Article, Comment } from '@features/articles/models';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +37,16 @@ export class ArticlesService {
       params: {
         page: page.toString(),
         sort: 'created_at',
+        order: 'desc',
+      },
+    });
+  }
+
+  getTopArticles(limit = 5): Observable<ApiResponse<Article[]>> {
+    return this.http.get<ApiResponse<Article[]>>(`${this.apiUrl}/articles`, {
+      params: {
+        per_page: limit.toString(),
+        sort: 'comments_count',
         order: 'desc',
       },
     });

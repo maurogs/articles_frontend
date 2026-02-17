@@ -1,9 +1,8 @@
 import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ArticlesService } from '@features/articles/services/articles.service';
-import { ApiResponse } from '@features/articles/models/article.model';
-import { Comment } from '@features/articles/models/comment.model';
+import { ArticlesService } from '@features/articles/services';
+import { ApiResponse, Comment } from '@features/articles/models';
 import { PaginationComponent } from '@shared/ui/pagination/pagination.component';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommentsService } from '@features/articles/services/comments.service';
+import { CommentsService } from '@features/articles/services';
 import { capitalizeWords } from '@shared/utils/string.utils';
 
 @Component({

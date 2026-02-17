@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { Comment } from '@features/articles/models/comment.model';
+import { ApiResponse, Comment } from '@features/articles/models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +10,10 @@ import { Comment } from '@features/articles/models/comment.model';
 export class CommentsService {
   private readonly apiUrl = `${environment.apiUrl}`;
   private readonly http = inject(HttpClient);
+
+  getComments(): Observable<ApiResponse<Comment[]>> {
+    return this.http.get<ApiResponse<Comment[]>>(`${this.apiUrl}/comments`);
+  }
 
   createComment(articleId: string, authorName: string, body: string): Observable<Comment> {
     const payload = {

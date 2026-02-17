@@ -2,7 +2,7 @@ import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ArticlesService } from '@features/articles/services/articles.service';
+import { ArticlesService } from '@features/articles/services';
 import { capitalizeWords, capitalizeFirstLetter } from '@shared/utils/string.utils';
 
 @Component({

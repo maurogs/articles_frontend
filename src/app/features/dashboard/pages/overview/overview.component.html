@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card text-center p-4 shadow-sm">
+        <h3 class="text-muted">Total number of Articles</h3>
+        <p class="display-4 fw-bold">{{ totalArticles() }}</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-center p-4 shadow-sm">
+        <h3 class="text-muted">Total number of Comments</h3>
+        <p class="display-4 fw-bold">{{ totalComments() }}</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mb-3 text-center">Most commented Articles</h2>
+  @if (topArticles().length > 0) {
+    <table class="table table-hover border">
+      <thead class="table-light">
+        <tr>
+          <th>Title</th>
+          <th>Author Name</th>
+          <th class="text-center">Number of Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (article of topArticles(); track article.id) {
+          <tr>
+            <td>{{ article.attributes.title }}</td>
+            <td>{{ article.attributes.authorName }}</td>
+            <td class="text-center">
+              <span class="badge bg-secondary">
+                {{ article.attributes.commentsCount }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <div class="col-12">
+      <div class="alert alert-light border border-dashed text-center py-5 shadow-sm">
+        <div class="mb-3">
+          <i class="bi bi-journal-x fs-1 text-muted"></i>
+        </div>
+        <h4 class="text-secondary mb-4">There are no articles yet</h4>
+        <button routerLink="/articles/new" class="btn btn-outline-success px-4">
+          <i class="bi bi-plus-lg me-2"></i>Create Article
+        </button>
+      </div>
+    </div>
+  }
+</div>
