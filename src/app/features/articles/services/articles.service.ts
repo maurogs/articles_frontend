@@ -20,4 +20,15 @@ export class ArticlesService {
       },
     });
   }
+
+  createArticle(article: { title: string; body: string; authorName: string }): Observable<void> {
+    const payload = {
+      article: {
+        title: article.title,
+        body: article.body,
+        author_name: article.authorName,
+      },
+    };
+    return this.http.post<void>(`${this.apiUrl}/articles`, payload);
+  }
 }

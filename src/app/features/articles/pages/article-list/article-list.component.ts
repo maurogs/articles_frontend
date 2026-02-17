@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ArticlesService } from '@features/articles/services/articles.service';
 import { Article, ApiResponse } from '@features/articles/models/article.model';
 import { PaginationComponent } from '@shared/ui/pagination/pagination.component';
@@ -7,7 +8,7 @@ import { PaginationComponent } from '@shared/ui/pagination/pagination.component'
 @Component({
   selector: 'app-article-list',
   standalone: true,
-  imports: [CommonModule, PaginationComponent],
+  imports: [CommonModule, RouterLink, PaginationComponent],
   templateUrl: './article-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

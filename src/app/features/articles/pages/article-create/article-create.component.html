@@ -1,0 +1,65 @@
+<div class="container pb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="card-title fw-bold mb-4">Add New Article</h2>
+
+          <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="title" class="form-label fw-semibold">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="title"
+                placeholder="Article's title"
+                [class.is-invalid]="
+                  articleForm.get('title')?.invalid && articleForm.get('title')?.touched
+                "
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="authorName" class="form-label fw-semibold">Author Name</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="authorName"
+                placeholder="Your name"
+                [class.is-invalid]="
+                  articleForm.get('authorName')?.invalid && articleForm.get('authorName')?.touched
+                "
+              />
+            </div>
+
+            <div class="mb-4">
+              <label for="body" class="form-label fw-semibold">Body</label>
+              <textarea
+                class="form-control"
+                formControlName="body"
+                rows="6"
+                placeholder="Write the content here"
+                [class.is-invalid]="
+                  articleForm.get('body')?.invalid && articleForm.get('body')?.touched
+                "
+              ></textarea>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button
+                type="submit"
+                class="btn btn-outline-dark px-4"
+                [disabled]="articleForm.invalid"
+              >
+                Add Article
+              </button>
+              <button type="button" class="btn btn-outline-secondary" routerLink="/articles">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
