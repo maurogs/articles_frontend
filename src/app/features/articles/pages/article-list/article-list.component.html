@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold text-secondary">
+      List of Articles <span class="badge bg-secondary ms-2">{{ metadata()?.total }}</span>
+    </h3>
+  </div>
+
+  <div class="row">
+    @for (article of articles(); track article.id) {
+      <div class="col-12 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title h4">{{ article.attributes.title }}</h3>
+
+            <div class="row mt-3 text-muted">
+              <div class="col-md-4">
+                <strong>Author:</strong> {{ article.attributes.authorName }}
+              </div>
+              <div class="col-md-4">
+                <strong>Date:</strong> {{ article.attributes.createdAt | date: 'EEEE, d MMM y' }}
+              </div>
+              <div class="col-md-4">
+                <strong>Comments: &emsp;</strong>
+                <span class="badge text-bg-secondary">
+                  {{ article.attributes.commentsCount }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12">
+        <div class="alert alert-light border border-dashed text-center py-5 shadow-sm">
+          <div class="mb-3"><i class="bi bi-journal-x fs-1 text-muted"></i></div>
+          <h4 class="text-secondary">There's no articles yet</h4>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (metadata()) {
+    <app-pagination
+      [currentPage]="currentPage()"
+      [totalPages]="metadata()?.total_pages || 0"
+      (changePage)="goToPage($event)"
+    >
+    </app-pagination>
+  }
+</div>

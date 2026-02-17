@@ -1,0 +1,19 @@
+<nav class="d-flex justify-content-center align-items-center mt-4 mb-5">
+  <button
+    class="btn btn-outline-dark btn-sm me-3"
+    [disabled]="currentPage() === 1"
+    (click)="changePage.emit(currentPage() - 1)"
+  >
+    &laquo; Previous
+  </button>
+
+  <span class="fw-medium small"> Page {{ currentPage() }} of {{ totalPages() }} </span>
+
+  <button
+    class="btn btn-outline-dark btn-sm ms-3"
+    [disabled]="currentPage() === totalPages()"
+    (click)="changePage.emit(currentPage() + 1)"
+  >
+    Next &raquo;
+  </button>
+</nav>
