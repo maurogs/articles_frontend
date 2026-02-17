@@ -1,0 +1,39 @@
+<div class="container pb-5">
+  <h2 class="h4 fw-bold mb-4 border-start border-4 border-primary ps-3">
+    Comments for: <span class="text-secondary">{{ articleTitle() }}</span>
+  </h2>
+
+  @if (comments().length > 0) {
+    <div class="list-group list-group-flush shadow-sm rounded border">
+      @for (comment of comments(); track comment.id) {
+        <div class="list-group-item p-3 shadow-none">
+          <p class="mb-2 text-dark">{{ comment.attributes.body }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="small fw-bold text-secondary">
+              {{ comment.attributes.authorName }}
+            </span>
+            <small class="text-muted">
+              {{ comment.attributes.createdAt | date: "d MMM y 'at' HH:mm" }}
+            </small>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (metadata()) {
+      @if (metadata() && metadata()!.total_pages > 1) {
+        <app-pagination
+          [currentPage]="currentPage()"
+          [totalPages]="metadata()?.total_pages || 0"
+          (changePage)="goToPage($event)"
+        >
+        </app-pagination>
+      }
+    }
+  } @else {
+    <div class="alert alert-light border border-dashed text-center py-5">
+      <i class="bi bi-chat-dots fs-1 text-muted d-block mb-2"></i>
+      <p class="mb-0 text-muted">There is no comments in this article yet</p>
+    </div>
+  }
+</div>

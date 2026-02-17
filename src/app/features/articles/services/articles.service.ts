@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { Article, ApiResponse } from '@features/articles/models/article.model';
+import { Article, ApiResponse, Comment } from '@features/articles/models/article.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +30,15 @@ export class ArticlesService {
       },
     };
     return this.http.post<void>(`${this.apiUrl}/articles`, payload);
+  }
+
+  getArticleComments(articleId: string, page = 1): Observable<ApiResponse<Comment[]>> {
+    return this.http.get<ApiResponse<Comment[]>>(`${this.apiUrl}/articles/${articleId}/comments`, {
+      params: {
+        page: page.toString(),
+        sort: 'created_at',
+        order: 'desc',
+      },
+    });
   }
 }
